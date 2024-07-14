@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9095:9092"
+    environment:
+      - SPRING_DATASOURCE_URL=r2dbc:postgresql://db:5432/challenge
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=adminadmin
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_DB=challenge
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=adminadmin
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
