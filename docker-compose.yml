@@ -10,6 +10,9 @@ services:
       - SPRING_DATASOURCE_URL=r2dbc:postgresql://db:5432/challenge
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=adminadmin
+      - FILE_CONTENT_SEPARATOR=,
+      - FILE_CONTENT_ENCODING=utf-8
+      - FILE_CONTENT_TYPE=text/csv
     depends_on:
       - db
 
